@@ -32,10 +32,8 @@ QPushButton#ReservarButton {
     padding: 8px 16px; /* Espaciado interno */
     text-align: center; /* Alineación de texto */
     text-decoration: none; /* Sin decoración de texto */
-    display: inline-block; /* Mostrar como bloque */
     font-size: 16px; /* Tamaño de fuente */
     margin: 4px 2px; /* Margen */
-    cursor: pointer; /* Cursor apuntador */
 }
 
 QPushButton#buscarButton:hover,
