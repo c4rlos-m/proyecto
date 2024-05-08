@@ -1,5 +1,4 @@
 import sys
-from database.database import Database 
 from PySide6.QtWidgets import QApplication, QMainWindow
 from plantillas.pantallaPrincipal import Ui_MainWindow 
 
