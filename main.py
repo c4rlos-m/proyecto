@@ -64,7 +64,6 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
         super().__init__()
         self.ui = vMenuPrincipal()
         self.ui.setupUi(self)
-        self.ui.logoutButton.clicked.connect(self.logout)
 
 
 
