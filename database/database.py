@@ -74,4 +74,3 @@ def login_user(conn, cursor, nombre, password):
     except sqlite3.Error as e:
         print("Error al iniciar sesión: ", e)
         return False
-

@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from database.database import close, connect, insert_user, login_user
+from database.database import connect, insert_user, login_user
 from plantillas.pantallaPrincipal import Ui_MainWindow as vPrincipal
 from plantillas.menuPrincipal import Ui_MainWindow as vMenuPrincipal
 
@@ -41,9 +41,6 @@ class MainWindow(QMainWindow, vPrincipal):
             self.menu_principal = menuPrincipal()
             self.menu_principal.show()
         
-
-
-
 
     def register(self):
 
