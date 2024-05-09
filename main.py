@@ -17,6 +17,7 @@ class MainWindow(QMainWindow, vPrincipal):
         self.ui.loginButtonPage.clicked.connect(self.show_login_page)
         self.ui.loginButton.clicked.connect(self.login)
         self.ui.registerButton.clicked.connect(self.register)
+        self.showMaximized()
         connect()
 
     def show_register_page(self):
