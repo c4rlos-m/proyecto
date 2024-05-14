@@ -37,90 +37,11 @@ QPushButton {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tablalibrosbuscar">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>230</y>
-      <width>631</width>
-      <height>251</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>631</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="sortingEnabled">
-     <bool>false</bool>
-    </property>
-    <column>
-     <property name="text">
-      <string>id</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>titulo</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>autor</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Año Publicacion</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>genero</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>disponible</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>50</y>
+      <y>10</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -139,7 +60,7 @@ QPushButton {
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>120</y>
+      <y>70</y>
       <width>281</width>
       <height>51</height>
      </rect>
@@ -151,14 +72,14 @@ QPushButton {
      </font>
     </property>
     <property name="placeholderText">
-     <string>Buscar por Autor</string>
+     <string>Buscar por Titulo</string>
     </property>
    </widget>
    <widget class="QPushButton" name="buscarAutor">
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>120</y>
+      <y>70</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -171,6 +92,113 @@ QPushButton {
     </property>
     <property name="text">
      <string>Buscar</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>150</y>
+      <width>256</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid #3498DB;
+border-radius: 5px;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>430</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="toolTipDuration">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string>BUSCAR UN LIBRO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>470</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="toolTipDuration">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string>BUSCAR UN LIBRO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>510</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="toolTipDuration">
+     <number>5</number>
+    </property>
+    <property name="text">
+     <string>BUSCAR UN LIBRO</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logoutButton">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>10</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: red;
+border-radius: 5px;
+border:  none
+</string>
+    </property>
+    <property name="text">
+     <string>Volver</string>
     </property>
    </widget>
   </widget>

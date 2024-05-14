@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(800, 603)
         MainWindow.setStyleSheet(u"\n"
 "\n"
 "/* Estilos para la etiqueta de bienvenida */\n"
@@ -111,10 +111,13 @@ class Ui_MainWindow(object):
         __qtablewidgetitem5 = QTableWidgetItem()
         __qtablewidgetitem5.setFont(font);
         self.tablaLibros.setHorizontalHeaderItem(5, __qtablewidgetitem5)
+        if (self.tablaLibros.rowCount() < 20):
+            self.tablaLibros.setRowCount(20)
         self.tablaLibros.setObjectName(u"tablaLibros")
-        self.tablaLibros.setGeometry(QRect(80, 270, 631, 251))
+        self.tablaLibros.setGeometry(QRect(80, 250, 641, 251))
         self.tablaLibros.setMinimumSize(QSize(631, 0))
         self.tablaLibros.setSortingEnabled(False)
+        self.tablaLibros.setRowCount(20)
         self.DevolverButton = QPushButton(self.centralwidget)
         self.DevolverButton.setObjectName(u"DevolverButton")
         self.DevolverButton.setGeometry(QRect(500, 140, 111, 41))
@@ -125,8 +128,15 @@ class Ui_MainWindow(object):
         self.ReservarButton.setFont(font1)
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(320, 220, 141, 16))
+        self.label_2.setGeometry(QRect(320, 230, 141, 16))
         self.label_2.setFont(font)
+        self.logoutButton = QPushButton(self.centralwidget)
+        self.logoutButton.setObjectName(u"logoutButton")
+        self.logoutButton.setGeometry(QRect(330, 520, 111, 41))
+        self.logoutButton.setFont(font1)
+        self.logoutButton.setStyleSheet(u"background-color: red;\n"
+"border-radius: 5px\n"
+"")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -160,5 +170,6 @@ class Ui_MainWindow(object):
         self.DevolverButton.setText(QCoreApplication.translate("MainWindow", u"Devolver", None))
         self.ReservarButton.setText(QCoreApplication.translate("MainWindow", u"Reservar", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Libros disponibles ", None))
+        self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
     # retranslateUi
 

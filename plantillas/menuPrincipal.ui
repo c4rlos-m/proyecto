@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>603</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,8 +109,8 @@ QLabel#label_2 {
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>270</y>
-      <width>631</width>
+      <y>250</y>
+      <width>641</width>
       <height>251</height>
      </rect>
     </property>
@@ -123,6 +123,29 @@ QLabel#label_2 {
     <property name="sortingEnabled">
      <bool>false</bool>
     </property>
+    <property name="rowCount">
+     <number>20</number>
+    </property>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
     <column>
      <property name="text">
       <string>id</string>
@@ -230,7 +253,7 @@ QLabel#label_2 {
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>220</y>
+      <y>230</y>
       <width>141</width>
       <height>16</height>
      </rect>
@@ -243,6 +266,31 @@ QLabel#label_2 {
     </property>
     <property name="text">
      <string>Libros disponibles </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logoutButton">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>520</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: red;
+border-radius: 5px
+</string>
+    </property>
+    <property name="text">
+     <string>Logout</string>
     </property>
    </widget>
   </widget>
