@@ -113,6 +113,14 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
         self.pagina_buscar.show()
 
 
+    def logout(self):
+        # Cierra la ventana actual
+        self.close()
+
+        # Abre la ventana de inicio de sesión
+        self.main_window = MainWindow()
+        self.main_window.show()
+
 class menuAdmin(QMainWindow, vMenuAdmin):
     def __init__(self):
         super().__init__()
