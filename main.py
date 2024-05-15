@@ -110,9 +110,9 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
     def pagina_buscar(self):
         self.hide()  # Oculta la ventana actual
         # Crea una instancia de la ventana de búsqueda
-        self.pagina_buscar = PaginaBuscar(self)
+        self.pagina_buscar_window = PaginaBuscar(self)  # Cambio de nombre de la variable
         # Muestra la ventana de búsqueda
-        self.pagina_buscar.show()
+        self.pagina_buscar_window.show()
 
 
 
