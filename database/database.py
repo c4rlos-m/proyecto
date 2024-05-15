@@ -56,15 +56,18 @@ def connect():
                               VALUES (?, ?, ?, ?, ?, ?, ?)''', libros)
 
         # Creación de la tabla 'libros_prestados'
-        cursor.execute('''CREATE TABLE IF NOT EXISTS libros_prestados (
+        cursor.execute('''CREATE TABLE IF NOT EXISTS libros_reservados (
                             id INTEGER PRIMARY KEY,
-                            id_libro INTEGER,
-                            id_usuario INTEGER,
+                            titulo TEXT,
+                            usuario INTEGER,
                             fecha_prestamo TEXT,
-                            fecha_devolucion TEXT,
                             devuelto INTEGER
                         )''')
         
+        cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios_bloqueados (
+                            
+                            nombre TEXT PRIMARY KEY
+                        )''')
         # Guardar cambios y cerrar la conexión
         conn.commit()
         conn.close()
@@ -145,3 +148,26 @@ def obtener_info_libro_por_id(id_libro):
     except sqlite3.Error as e:
         print("Error al obtener la información del libro desde la base de datos:", e)
         return None
+
+def libro_disponible(conn, cursor, id_libro):
+    try:
+        cursor.execute('SELECT disponible FROM libros WHERE id = ?', (id_libro,))
+        result = cursor.fetchone()
+        if result:
+            return result[0] == 1
+        else:
+            return False
+    except sqlite3.Error as e:
+        print("Error al verificar si el libro está disponible:", e)
+        return False
+    
+def reservar_libro(conn, cursor, id_libro, usuario):
+    try:
+        cursor.execute('INSERT INTO libros_reservados (id_libro, usuario, fecha_prestamo, devuelto) VALUES (?, ?, DATETIME("now"), 0)', (id_libro, usuario))
+        cursor.execute('UPDATE libros SET disponible = 0 WHERE id = ?', (id_libro,))
+        conn.commit()
+        print(f"Libro con ID {id_libro} reservado por el usuario {usuario}.")
+        return True
+    except sqlite3.Error as e:
+        print("Error al reservar el libro:", e)
+        return False
