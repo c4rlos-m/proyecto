@@ -152,6 +152,7 @@ class PaginaBuscar(QMainWindow, vBuscar):
 
     def buscar_libro(self):
         titulo_libro = self.ui.autorInput.text()
+        self.ui.autorInput.clear()
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
         id_libro = title_to_id(conn, cursor, titulo_libro)
