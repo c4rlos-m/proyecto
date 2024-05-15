@@ -1,0 +1,85 @@
+{
+    "libros": [
+      {
+        "id": 1,
+        "portada": "/src/bookcovers/elseñor.jpg"
+      },
+      {
+        "id": 2,
+        "portada": "/src/bookcovers/cienaños.png"
+      },
+      {
+        "id": 3,
+        "portada": "/src/bookcovers/1984.jpg"
+      },
+      {
+        "id": 4,
+        "portada": "/src/bookcovers/orgullo.jpg"
+      },
+      {
+        "id": 5,
+        "portada": "/src/bookcovers/donquijote.jpg"
+      },
+      {
+        "id": 6,
+        "portada": "/src/bookcovers/lapiedra.jpg"
+      },
+      {
+        "id": 7,
+        "portada": "/src/bookcovers/matar.jpg"
+      },
+      {
+        "id": 8,
+        "portada": "/src/bookcovers/cronica.jpg"
+      },
+      {
+        "id": 9,
+        "portada": "/src/bookcovers/metamorfosis.jpg"
+      },
+      {
+        "id": 10,
+        "portada": "/src/bookcovers/aventuras.jpg"
+      },
+      {
+        "id": 11,
+        "portada": "/src/bookcovers/hamlet.jpg"
+      },
+      {
+        "id": 12,
+        "portada": "/src/bookcovers/dracula.jpg"
+      },
+      {
+        "id": 13,
+        "portada": "/src/bookcovers/frankestein.jpg"
+      },
+      {
+        "id": 14,
+        "portada": "/src/bookcovers/odisea.jpg"
+      },
+      {
+        "id": 15,
+        "portada": "/src/bookcovers/iliada.jpg"
+      },
+      {
+        "id": 16,
+        "portada": "/src/bookcovers/mobydick.jpg"
+      },
+      {
+        "id": 17,
+        "portada": "/src/bookcovers/gran.jpg"
+      },
+      {
+        "id": 18,
+        "portada": "/src/bookcovers/miserables.jpg"
+      },
+      {
+        "id": 19,
+        "portada": "/src/bookcovers/anna.jpg"
+      },
+      {
+        "id": 20,
+        "portada": "/src/bookcovers/retrato.jpg"
+      }
+    ]
+  }
+  

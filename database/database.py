@@ -24,7 +24,8 @@ def connect():
                             autor TEXT,
                             fecha_publicacion TEXT,
                             genero TEXT,
-                            disponible INTEGER
+                            disponible INTEGER,
+                            portada TEXT
                         )''')
 
         # Creación de la tabla 'libros_prestados'
@@ -74,3 +75,45 @@ def login_user(conn, cursor, nombre, password):
     except sqlite3.Error as e:
         print("Error al iniciar sesión: ", e)
         return False
+    
+def title_to_id(conn, cursor, title):
+    try:
+        cursor.execute('SELECT id FROM libros WHERE titulo = ?', (title,))
+        result = cursor.fetchone()
+        if result:
+            print(f"El id del libro '{title}' es {result[0]}.")
+            return result[0]
+        else:
+            print(f"No se encontró ningún libro con el título '{title}'.")
+            return None
+    except sqlite3.Error as e:
+        print("Error al obtener el id del libro:", e)
+        return None
+
+def obtener_info_libro_por_id(id_libro):
+    try:
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+
+        cursor.execute('SELECT * FROM libros WHERE id = ?', (id_libro,))
+        libro = cursor.fetchone()
+
+        conn.close()
+
+        if libro:
+            info_libro = {
+                'id': libro[0],
+                'titulo': libro[1],
+                'autor': libro[2],
+                'año': libro[3],
+                'genero': libro[4],
+                'disponible': libro[5],
+                'portada': libro[6]
+            }
+            return info_libro
+        else:
+            print(f"No se encontró información para el ID {id_libro}.")
+            return None
+    except sqlite3.Error as e:
+        print("Error al obtener la información del libro desde la base de datos:", e)
+        return None
