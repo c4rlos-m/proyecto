@@ -1,21 +1,21 @@
 import sqlite3
 
 def connect():
-
-    # Conexión a la base de datos (creará un archivo de base de datos llamado 'biblioteca.db' si no existe)
-    conn = sqlite3.connect('biblioteca.db')
-    cursor = conn.cursor()
-
     try:
-    # Creación de la tabla 'usuarios'
-        cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios (
+        # Conexión a la base de datos (creará un archivo de base de datos llamado 'biblioteca.db' si no existe)
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
 
+        # Creación de la tabla 'usuarios'
+        cursor.execute('''CREATE TABLE IF NOT EXISTS usuarios (
                             nombre TEXT PRIMARY KEY,
                             email TEXT,
                             password TEXT,
                             fecha_registro TEXT DEFAULT (DATETIME('now')),
                             administrador INTEGER NULL DEFAULT 0
                         )''')
+        cursor.execute('''INSERT OR IGNORE INTO usuarios (nombre, email, password, administrador)
+                        VALUES ('admin', 'admin', 'admin', 1), ('user', 'user', 'user', 0), ('user2', 'user2', 'user2', 0)''')
 
         # Creación de la tabla 'libros'
         cursor.execute('''CREATE TABLE IF NOT EXISTS libros (
@@ -28,6 +28,33 @@ def connect():
                             portada TEXT
                         )''')
 
+        libros = [
+            (1, 'El señor de los anillos', 'J.R.R. Tolkien', '1954-07-29', 'Fantasía', 1, './src/bookscover/elseñor.jpg'),
+            (2, 'Cien años de soledad', 'Gabriel García Márquez', '1967-05-30', 'Realismo mágico', 1, './src/bookscover/cienaños.png'),
+            (3, '1984', 'George Orwell', '1949-06-08', 'Distopía', 1, './src/bookscover/1984.jpg'),
+            (4, 'Orgullo y prejuicio', 'Jane Austen', '1813-01-28', 'Romance', 1, './src/bookscover/orgullo.jpg'),
+            (5, 'Don Quijote de la Mancha', 'Miguel de Cervantes', '1605-01-01', 'Novela de caballería', 1, './src/bookscover/donquijote.jpg'),
+            (6, 'Harry Potter y la piedra filosofal', 'J.K. Rowling', '1997-06-26', 'Fantasía', 1, './src/bookscover/lapiedra.jpg'),
+            (7, 'Matar a un ruiseñor', 'Harper Lee', '1960-07-11', 'Ficción legal', 1, './src/bookscover/matar.jpg'),
+            (8, 'Crónica de una muerte anunciada', 'Gabriel García Márquez', '1981-05-05', 'Realismo mágico', 1, './src/bookscover/cronica.jpg'),
+            (9, 'La metamorfosis', 'Franz Kafka', '1915-10-15', 'Ficción filosófica', 1, './src/bookscover/metamorfosis.jpg'),
+            (10, 'Las aventuras de Tom Sawyer', 'Mark Twain', '1876-12-10', 'Novela de aventuras', 1, './src/bookscover/aventuras.jpg'),
+            (11, 'Hamlet', 'William Shakespeare', '1603-01-01', 'Tragedia', 1, './src/bookscover/hamlet.jpg'),
+            (12, 'Drácula', 'Bram Stoker', '1897-05-26', 'Novela gótica', 1, './src/bookscover/dracula.jpg'),
+            (13, 'Frankenstein', 'Mary Shelley', '1818-01-01', 'Ciencia ficción', 1, './src/bookscover/frankestein.jpg'),
+            (14, 'La odisea', 'Homero', '1200-01-01', 'Epopeya', 1, './src/bookscover/odisea.jpg'),
+            (15, 'La iliada', 'Homero', '1800-01-01', 'Epopeya', 1, './src/bookscover/iliada.jpg'),
+            (16, 'Moby Dick', 'Herman Melville', '1851-11-14', 'Novela de aventuras', 1, './src/bookscover/mobydick.jpg'),
+            (17, 'El gran Gatsby', 'F. Scott Fitzgerald', '1925-04-10', 'Ficción psicológica', 1, './src/bookscover/gran.jpg'),
+            (18, 'Los miserables', 'Victor Hugo', '1862-04-03', 'Novela histórica', 1, './src/bookscover/miserables.jpg'),
+            (19, 'Anna Karenina', 'León Tolstói', '1877-01-01', 'Novela psicológica', 1, './src/bookscover/anna.jpg'),
+            (20, 'El retrato de Dorian Gray', 'Oscar Wilde', '1890-07-01', 'Ficción gótica', 1, './src/bookscover/retrato.jpg')
+        ]
+
+        # Inserción de datos en la tabla 'libros'
+        cursor.executemany('''INSERT OR IGNORE INTO libros (id, titulo, autor, fecha_publicacion, genero, disponible, portada)
+                              VALUES (?, ?, ?, ?, ?, ?, ?)''', libros)
+
         # Creación de la tabla 'libros_prestados'
         cursor.execute('''CREATE TABLE IF NOT EXISTS libros_prestados (
                             id INTEGER PRIMARY KEY,
@@ -37,14 +64,15 @@ def connect():
                             fecha_devolucion TEXT,
                             devuelto INTEGER
                         )''')
-    except sqlite3.Error as e:
-        print("Error al crear las tablas: ", e)
+        
+        # Guardar cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        print("Conexión exitosa")
+        return conn, cursor
 
-    # Guardar cambios y cerrar la conexión
-    conn.commit()
-    conn.close()
-    print("Conexión exitosa")
-    return conn, cursor
+    except sqlite3.Error as e:
+        print("Error al conectar o al crear las tablas: ", e)
 
 
 def close(conn):
