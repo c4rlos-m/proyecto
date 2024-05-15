@@ -46,6 +46,8 @@ class MainWindow(QMainWindow, vPrincipal):
 
         if login_user(conn, cursor, nombre, password):
             self.hide()
+            global usuario_logeado 
+            usuario_logeado = nombre
             if self.user_is_admin(conn, cursor, nombre):
                 print("El usuario es administrador")
                 self.menu_admin = menuAdmin()
@@ -239,7 +241,8 @@ class PaginaReservar(QMainWindow, vReservar):
         cursor = conn.cursor()
         id_libro = title_to_id(conn, cursor, titulo_libro)
         conn.close()
-
+        self.ui.label_8.setStyleSheet("QLabel { color : white;}")
+        self.ui.label_8.setText("Disponibilidad")
         if id_libro is not None:
             print("Libro encontrado")
             info_libro = obtener_info_libro_por_id(id_libro)  # Pasar el id_libro como argumento
@@ -271,10 +274,12 @@ class PaginaReservar(QMainWindow, vReservar):
         libro_id = title_to_id(conn, cursor, self.ui.autorInput.text())
         if self.libro_disponible():
             print("Libro reservado")
-            reservar_libro(conn, cursor, libro_id, "usuario")
+            reservar_libro(conn, cursor, libro_id, usuario_logeado)
+            self.ui.label_8.setStyleSheet("QLabel { color : green;}")
             self.ui.label_8.setText("Libro reservado")
         else:
             print("Libro no disponible")
+            self.ui.label_8.setStyleSheet("QLabel { color : red;}")
             self.ui.label_8.setText("Libro no disponible")
 
     def logout(self):

@@ -162,12 +162,12 @@ def libro_disponible(conn, cursor, id_libro):
         print("Error al verificar si el libro está disponible:", e)
         return False
     
-def reservar_libro(conn, cursor, id_libro, usuario):
+def reservar_libro(conn, cursor, id_libro, nombre_usuario):
     try:
-        cursor.execute('INSERT INTO libros_reservados (id_libro, usuario, fecha_prestamo, devuelto) VALUES (?, ?, DATETIME("now"), 0)', (id_libro, usuario))
+        cursor.execute('INSERT INTO libros_reservados (id_libro, usuario, fecha_prestamo, devuelto) VALUES (?, ?, DATETIME("now"), 0)', (id_libro, nombre_usuario))
         cursor.execute('UPDATE libros SET disponible = 0 WHERE id = ?', (id_libro,))
         conn.commit()
-        print(f"Libro con ID {id_libro} reservado por el usuario {usuario}.")
+        print(f"Libro con ID {id_libro} reservado por el usuario {nombre_usuario}.")
         return True
     except sqlite3.Error as e:
         print("Error al reservar el libro:", e)
