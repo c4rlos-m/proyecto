@@ -57,10 +57,11 @@ def connect():
 
         # Creación de la tabla 'libros_prestados'
         cursor.execute('''CREATE TABLE IF NOT EXISTS libros_reservados (
-                            id INTEGER PRIMARY KEY,
-                            titulo TEXT,
+                            id_reserva INTEGER PRIMARY KEY,
+                            id_libro TEXT,
                             usuario INTEGER,
                             fecha_prestamo TEXT,
+                            fecha_devolucion TEXT,
                             devuelto INTEGER
                         )''')
         
