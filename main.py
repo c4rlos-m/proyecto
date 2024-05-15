@@ -227,7 +227,6 @@ class PaginaReservar(QMainWindow, vReservar):
         self.ui.graphicsView.setAlignment(Qt.AlignCenter)
         self.ui.graphicsView.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-    # Los otros métodos permanecen sin cambios
 
     def libro_no_encontrado(self):
         self.ui.label_2.setText("Libro no encontrado")
@@ -246,24 +245,33 @@ class PaginaReservar(QMainWindow, vReservar):
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
         id_libro = title_to_id(conn, cursor, titulo_libro)
-        conn.close()
-        self.ui.label_8.setStyleSheet("QLabel { color : white;}")
-        self.ui.label_8.setText("Disponibilidad")
+        
         if id_libro is not None:
             print("Libro encontrado")
-            info_libro = obtener_info_libro_por_id(id_libro)  # Pasar el id_libro como argumento
+            info_libro = obtener_info_libro_por_id(id_libro)
             if info_libro:
                 print(info_libro)
                 self.mostrar_imagen(info_libro['portada'])
                 self.mostrar_info_libro(info_libro)
                 
+                # Verificar si el libro está disponible
+                if libro_disponible(conn, cursor, id_libro):
+                    self.ui.label_8.setStyleSheet("QLabel { color : green; }")
+                    self.ui.label_8.setText("Disponible")
+                else:
+                    self.ui.label_8.setStyleSheet("QLabel { color : red; }")
+                    self.ui.label_8.setText("No disponible")
+                
+                conn.close()
                 return titulo_libro
             else:
                 print("Información del libro no encontrada.")
                 self.libro_no_encontrado()
         else:
             print("Libro no encontrado")
+            self.ui.label_8.setText("")
             self.libro_no_encontrado()
+
         
 
     def libro_disponible(self):
@@ -287,7 +295,7 @@ class PaginaReservar(QMainWindow, vReservar):
         else:
             print("Libro no disponible")
             self.ui.label_8.setStyleSheet("QLabel { color : red;}")
-            self.ui.label_8.setText("Libro no disponible")
+            self.ui.label_8.setText("No se puede reservar.")
 
     def logout(self):
         self.close()

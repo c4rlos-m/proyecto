@@ -135,7 +135,7 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Titulo:", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Autor:", None))
         self.label_2.setText("")
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Disponibilidad", None))
+        self.label_8.setText("")
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Reservar", None))
     # retranslateUi
 
