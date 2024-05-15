@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados
+from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados, devolver_libro
 from plantillas.pantallaPrincipal import Ui_MainWindow as vPrincipal
 from plantillas.menuPrincipal import Ui_MainWindow as vMenuPrincipal
 from plantillas.paginaAdministrador import Ui_MainWindow as vMenuAdmin
@@ -321,6 +321,7 @@ class PaginaDevolver(QMainWindow, vDevolver):
         self.ui.setupUi(self)
         self.main_window = main_window
         self.ui.logoutButton.clicked.connect(self.logout)
+        self.ui.buscarAutor.clicked.connect(self.devolver_libro)
         self.show_data()
     
     def show_data(self):
@@ -334,11 +335,26 @@ class PaginaDevolver(QMainWindow, vDevolver):
             for column_number, data in enumerate(row_data):
                 item = QTableWidgetItem(str(data))
                 self.ui.tableWidget.setItem(row_number, column_number, item)
-
+        if self.ui.tableWidget.rowCount() == 0:
+            self.ui.label.setStyleSheet("QLabel { color : red; }")
+            self.ui.label.setText("No tienes libros reservados")
         # Establecer el ancho de la primera columna más grande
         header = self.ui.tableWidget.horizontalHeader()
         header.setSectionResizeMode(0, QHeaderView.Stretch)  # Establecer la primera columna para que se ajuste al contenido
         header.setSectionResizeMode(1, QHeaderView.ResizeToContents)  # Establecer la segunda columna para ajustarse al contenido
+
+    def devolver_libro(self):
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        devolver_libro(conn, cursor, self.ui.autorInput.text(), usuario_logeado)
+        if devolver_libro:
+            self.ui.label.setStyleSheet("QLabel { color : green; }")
+            self.ui.label.setText("Libro devuelto")
+        else:
+            self.ui.label.setStyleSheet("QLabel { color : red; }")
+            self.ui.label.setText("Error al devolver el libro")
+        conn.close()
+        self.show_data()
 
 
     

@@ -58,8 +58,8 @@ def connect():
         # Creación de la tabla 'libros_prestados'
         cursor.execute('''CREATE TABLE IF NOT EXISTS libros_reservados (
                             id_reserva INTEGER PRIMARY KEY,
-                            id_libro TEXT,
-                            usuario INTEGER,
+                            id_libro INTEGER,
+                            usuario TEXT,
                             fecha_prestamo TEXT,
                             fecha_devolucion TEXT,
                             devuelto INTEGER
@@ -215,4 +215,23 @@ def libros_reservados(conn, cursor, nombre_usuario):
         return []
 
 
-    
+def devolver_libro(conn, cursor, titulo_libro, nombre_usuario):
+    try:
+        cursor.execute('SELECT id FROM libros WHERE titulo = ?', (titulo_libro,))
+        print(titulo_libro)
+        id_libro = cursor.fetchone()
+        if id_libro:
+            id_libro = id_libro[0]  # Extraer el ID del resultado de la consulta
+            cursor.execute('UPDATE libros_reservados SET devuelto = 1, fecha_devolucion = DATETIME("now") WHERE id_libro = ? AND usuario = ? ', (id_libro, nombre_usuario))
+            cursor.execute('UPDATE libros SET disponible = 1 WHERE id = ?', (id_libro,))
+            conn.commit()
+            print(f"Libro con título '{titulo_libro}' devuelto por el usuario {nombre_usuario}.")
+            return True
+        else:
+            print(f"No se encontró ningún libro con el título {titulo_libro}.")
+            return False
+    except sqlite3.Error as e:
+        print("Error al devolver el libro:", e)
+        return False
+
+
