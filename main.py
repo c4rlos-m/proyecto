@@ -186,6 +186,9 @@ class PaginaBuscar(QMainWindow, vBuscar):
 
         if id_libro is not None:
             print("Libro encontrado")
+            self.ui.label_5.setText("Titulo:")
+            self.ui.label_6.setText("Autor:")
+            self.ui.label_7.setText("Año Publicación: ")
             info_libro = obtener_info_libro_por_id(id_libro)  # Pasar el id_libro como argumento
             if info_libro:
                 print(info_libro)
@@ -196,6 +199,9 @@ class PaginaBuscar(QMainWindow, vBuscar):
                 self.libro_no_encontrado()
         else:
             print("Libro no encontrado")
+            self.ui.label_5.setText("")
+            self.ui.label_6.setText("")
+            self.ui.label_7.setText("")
             self.libro_no_encontrado()
 
     def logout(self):
@@ -248,6 +254,9 @@ class PaginaReservar(QMainWindow, vReservar):
         
         if id_libro is not None:
             print("Libro encontrado")
+            self.ui.label_5.setText("Titulo:")
+            self.ui.label_6.setText("Autor:")
+            self.ui.label_7.setText("Año Publicación: ")
             info_libro = obtener_info_libro_por_id(id_libro)
             if info_libro:
                 print(info_libro)
@@ -270,6 +279,9 @@ class PaginaReservar(QMainWindow, vReservar):
         else:
             print("Libro no encontrado")
             self.ui.label_8.setText("")
+            self.ui.label_5.setText("")
+            self.ui.label_6.setText("")
+            self.ui.label_7.setText("")
             self.libro_no_encontrado()
 
         
