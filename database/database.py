@@ -69,6 +69,24 @@ def connect():
                             
                             nombre TEXT PRIMARY KEY
                         )''')
+        cursor.execute('''CREATE TABLE IF NOT EXISTS proximos_libros (
+                            titulo TEXT,
+                            autor TEXT,
+                            fecha_publicacion TEXT,
+                            genero TEXT,
+                            portada TEXT
+                        )''')
+                       
+        libros_proximos = [
+            ('El principito', 'Antoine de Saint-Exupéry', '1943-04-06', 'Literatura infantil', './src/bookscover/principito.jpg'),
+            ('El alquimista', 'Paulo Coelho', '1988-01-01', 'Novela de aventuras', './src/bookscover/alquimista.jpg'),
+            ('El amor en los tiempos del cólera', 'Gabriel García Márquez', '1985-01-01', 'Realismo mágico', './src/bookscover/amor.jpg'),
+            ('La sombra del viento', 'Carlos Ruiz Zafón', '2001-01-01', 'Novela de misterio', './src/bookscover/sombra.jpg'),
+            ('Rayuela', 'Julio Cortázar', '1963-01-01', 'Ficción experimental', './src/bookscover/rayuela.jpg')
+        ]
+        cursor.executemany('''INSERT OR IGNORE INTO proximos_libros (titulo, autor, fecha_publicacion, genero, portada)
+                      VALUES (?, ?, ?, ?, ?)''', libros_proximos)
+
         # Guardar cambios y cerrar la conexión
         conn.commit()
         conn.close()
@@ -172,3 +190,29 @@ def reservar_libro(conn, cursor, id_libro, nombre_usuario):
     except sqlite3.Error as e:
         print("Error al reservar el libro:", e)
         return False
+
+def libros_reservados(conn, cursor, nombre_usuario):
+    try:
+        cursor.execute('''SELECT l.titulo, lr.fecha_prestamo 
+                          FROM libros_reservados AS lr 
+                          INNER JOIN libros AS l ON lr.id_libro = l.id 
+                          WHERE lr.usuario = ? AND lr.devuelto = 0''', (nombre_usuario,))
+        libros_reservados = cursor.fetchall()
+        if libros_reservados:
+            print(f"Libros reservados por el usuario {nombre_usuario}:")
+            for reserva in libros_reservados:
+                titulo_libro = reserva[0]
+                fecha_prestamo = reserva[1]
+                
+                print(f"Título del libro: {titulo_libro}, Fecha de préstamo: {fecha_prestamo}")
+                
+            return libros_reservados
+        else:
+            print(f"No hay libros reservados por el usuario {nombre_usuario}.")
+            return []
+    except sqlite3.Error as e:
+        print("Error al obtener los libros reservados:", e)
+        return []
+
+
+    

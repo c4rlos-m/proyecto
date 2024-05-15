@@ -1,13 +1,14 @@
 import sqlite3
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro
+from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados
 from plantillas.pantallaPrincipal import Ui_MainWindow as vPrincipal
 from plantillas.menuPrincipal import Ui_MainWindow as vMenuPrincipal
 from plantillas.paginaAdministrador import Ui_MainWindow as vMenuAdmin
 from plantillas.paginaReservar import Ui_MainWindow as vReservar
 from plantillas.paginaBuscar import Ui_MainWindow as vBuscar
-from PySide6.QtWidgets import QApplication, QPushButton, QLineEdit, QLabel, QMainWindow, QWidget, QTableWidgetItem, QGraphicsScene, QSizePolicy, QGraphicsPixmapItem
+from plantillas.paginaDevolver import Ui_MainWindow as vDevolver
+from PySide6.QtWidgets import QApplication, QPushButton, QLineEdit, QLabel, QMainWindow, QWidget, QTableWidgetItem, QGraphicsScene, QSizePolicy, QGraphicsPixmapItem, QHeaderView
 from PySide6.QtGui import QPixmap, Qt
 
 
@@ -88,7 +89,8 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
         self.show_data()
         self.ui.logoutButton.clicked.connect(self.logout)
         self.ui.buscarButton.clicked.connect(self.pagina_buscar)
-        self.ui.ReservarButton.clicked.connect(self.pagina_reservar)    
+        self.ui.ReservarButton.clicked.connect(self.pagina_reservar) 
+        self.ui.DevolverButton.clicked.connect(self.pagina_devolver)   
 
     def show_data(self):
         conn = sqlite3.connect('biblioteca.db')
@@ -122,6 +124,10 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
         self.pagina_reservar_window = PaginaReservar(self)
         self.pagina_reservar_window.show()
 
+    def pagina_devolver(self):
+        self.hide()
+        self.pagina_devolver_window = PaginaDevolver(self)
+        self.pagina_devolver_window.show()
 
 
 # PAGINA ADMINISTRADOR
@@ -250,6 +256,7 @@ class PaginaReservar(QMainWindow, vReservar):
                 print(info_libro)
                 self.mostrar_imagen(info_libro['portada'])
                 self.mostrar_info_libro(info_libro)
+                
                 return titulo_libro
             else:
                 print("Información del libro no encontrada.")
@@ -281,6 +288,40 @@ class PaginaReservar(QMainWindow, vReservar):
             print("Libro no disponible")
             self.ui.label_8.setStyleSheet("QLabel { color : red;}")
             self.ui.label_8.setText("Libro no disponible")
+
+    def logout(self):
+        self.close()
+        self.main_window.show()
+
+
+class PaginaDevolver(QMainWindow, vDevolver):
+    def __init__(self, main_window):
+        super().__init__()
+        self.ui = vDevolver()
+        self.ui.setupUi(self)
+        self.main_window = main_window
+        self.ui.logoutButton.clicked.connect(self.logout)
+        self.show_data()
+    
+    def show_data(self):
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        libros = libros_reservados(conn, cursor, usuario_logeado)
+        conn.close()
+
+        self.ui.tableWidget.setRowCount(len(libros))
+        for row_number, row_data in enumerate(libros):
+            for column_number, data in enumerate(row_data):
+                item = QTableWidgetItem(str(data))
+                self.ui.tableWidget.setItem(row_number, column_number, item)
+
+        # Establecer el ancho de la primera columna más grande
+        header = self.ui.tableWidget.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.Stretch)  # Establecer la primera columna para que se ajuste al contenido
+        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)  # Establecer la segunda columna para ajustarse al contenido
+
+
+    
 
     def logout(self):
         self.close()
