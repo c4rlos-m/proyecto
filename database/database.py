@@ -242,4 +242,31 @@ def devolver_libro(conn, cursor, titulo_libro, nombre_usuario, label):
         label.setText("Error al devolver el libro")
         return False
 
-
+def hacer_admin(conn, cursor, nombre_usuario):
+    try:
+        cursor.execute('UPDATE usuarios SET administrador = 1 WHERE nombre = ?', (nombre_usuario,))
+        conn.commit()
+        print(f"El usuario {nombre_usuario} ahora es administrador.")
+        return True
+    except sqlite3.Error as e:
+        print("Error al hacer administrador al usuario:", e)
+        return False
+    
+def listar_usuarios(conn, cursor):
+    try:
+        cursor.execute('SELECT nombre, email, administrador FROM usuarios')
+        usuarios = cursor.fetchall()
+        if usuarios:
+            print("Lista de usuarios:")
+            for usuario in usuarios:
+                nombre = usuario[0]
+                email = usuario[1]
+                administrador = "Sí" if usuario[2] == 1 else "No"
+                print(f"Nombre: {nombre}, Email: {email}, Administrador: {administrador}")
+            return usuarios
+        else:
+            print("No hay usuarios registrados.")
+            return []
+    except sqlite3.Error as e:
+        print("Error al obtener la lista de usuarios:", e)
+        return []

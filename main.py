@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados, devolver_libro
+from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados, devolver_libro, hacer_admin, listar_usuarios
 from plantillas.pantallaPrincipal import Ui_MainWindow as vPrincipal
 from plantillas.menuPrincipal import Ui_MainWindow as vMenuPrincipal
 from plantillas.paginaAdministrador import Ui_MainWindow as vMenuAdmin
@@ -137,7 +137,31 @@ class menuAdmin(QMainWindow, vMenuAdmin):
         self.ui = vMenuAdmin()
         self.ui.setupUi(self)
         self.main_window = main_window
+        self.listar_usuarios()
+        self.ui.pushButton.clicked.connect(self.hacer_admin)
         self.ui.logoutButton.clicked.connect(self.logout)
+
+    def listar_usuarios(self):
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        usuarios = listar_usuarios(conn, cursor)
+        conn.close()
+
+        self.ui.tableWidget.setRowCount(len(usuarios))
+        for row_number, row_data in enumerate(usuarios):
+            for column_number, data in enumerate(row_data):
+                item = QTableWidgetItem(str(data))
+                self.ui.tableWidget.setItem(row_number, column_number, item)
+        # Establecer el ancho de la primera columna más grande
+        header = self.ui.tableWidget.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.Stretch)
+
+    def hacer_admin(self):
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        hacer_admin(conn, cursor, self.ui.lineEdit.text())
+        conn.close()
+        self.listar_usuarios()
 
         
 
