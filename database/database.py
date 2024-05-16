@@ -232,9 +232,9 @@ def devolver_libro(conn, cursor, titulo_libro, nombre_usuario, label):
             label.setText("Libro devuelto")
             return True
         else:
-            print(f"No se encontró ningún libro con el título '{titulo_libro}' reservado para el usuario {nombre_usuario}.")
+            print(f"No se encontró ningún libro con el título '{titulo_libro}' reservado.")
             label.setStyleSheet("QLabel { color : red; }")
-            label.setText(f"No se encontró el libro '{titulo_libro}' reservado para el usuario {nombre_usuario}")
+            label.setText(f"No se encontró el libro '{titulo_libro}' reservado.")
             return False
     except sqlite3.Error as e:
         print("Error al devolver el libro:", e)

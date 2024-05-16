@@ -82,10 +82,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>380</y>
-      <width>181</width>
-      <height>16</height>
+      <x>480</x>
+      <y>370</y>
+      <width>311</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -94,7 +94,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Devolver Libro</string>
+     <string>Quieres devolver algun libro?</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -183,9 +183,15 @@ border:  none
      <rect>
       <x>190</x>
       <y>250</y>
-      <width>141</width>
+      <width>181</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Tus libros Reservados</string>

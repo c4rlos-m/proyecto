@@ -51,7 +51,7 @@ class MainWindow(QMainWindow, vPrincipal):
             usuario_logeado = nombre
             if self.user_is_admin(conn, cursor, nombre):
                 print("El usuario es administrador")
-                self.menu_admin = menuAdmin()
+                self.menu_admin = menuAdmin(self)
                 self.menu_admin.show()
             else:
                 print("El usuario no es administrador")
@@ -132,10 +132,18 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
 
 # PAGINA ADMINISTRADOR
 class menuAdmin(QMainWindow, vMenuAdmin):
-    def __init__(self):
+    def __init__(self, main_window):
         super().__init__()
         self.ui = vMenuAdmin()
         self.ui.setupUi(self)
+        self.main_window = main_window
+        self.ui.logoutButton.clicked.connect(self.logout)
+
+        
+
+    def logout(self):
+        self.close()
+        self.main_window.show()
 
 
 # PAGINA BUSCAR LIBRO
