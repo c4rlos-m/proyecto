@@ -215,23 +215,31 @@ def libros_reservados(conn, cursor, nombre_usuario):
         return []
 
 
-def devolver_libro(conn, cursor, titulo_libro, nombre_usuario):
+def devolver_libro(conn, cursor, titulo_libro, nombre_usuario, label):
     try:
-        cursor.execute('SELECT id FROM libros WHERE titulo = ?', (titulo_libro,))
-        print(titulo_libro)
-        id_libro = cursor.fetchone()
-        if id_libro:
-            id_libro = id_libro[0]  # Extraer el ID del resultado de la consulta
-            cursor.execute('UPDATE libros_reservados SET devuelto = 1, fecha_devolucion = DATETIME("now") WHERE id_libro = ? AND usuario = ? ', (id_libro, nombre_usuario))
+        # Verificar si el libro está reservado por el usuario
+        cursor.execute('SELECT l.id FROM libros AS l INNER JOIN libros_reservados AS lr ON l.id = lr.id_libro WHERE l.titulo = ? AND lr.usuario = ?', (titulo_libro, nombre_usuario))
+        id_libro_reservado = cursor.fetchone()
+
+        if id_libro_reservado:
+            id_libro = id_libro_reservado[0]
+            # Marcar el libro como devuelto y actualizar la disponibilidad
+            cursor.execute('UPDATE libros_reservados SET devuelto = 1, fecha_devolucion = DATETIME("now") WHERE id_libro = ? AND usuario = ?', (id_libro, nombre_usuario))
             cursor.execute('UPDATE libros SET disponible = 1 WHERE id = ?', (id_libro,))
             conn.commit()
             print(f"Libro con título '{titulo_libro}' devuelto por el usuario {nombre_usuario}.")
+            label.setStyleSheet("QLabel { color : green; }")
+            label.setText("Libro devuelto")
             return True
         else:
-            print(f"No se encontró ningún libro con el título {titulo_libro}.")
+            print(f"No se encontró ningún libro con el título '{titulo_libro}' reservado para el usuario {nombre_usuario}.")
+            label.setStyleSheet("QLabel { color : red; }")
+            label.setText(f"No se encontró el libro '{titulo_libro}' reservado para el usuario {nombre_usuario}")
             return False
     except sqlite3.Error as e:
         print("Error al devolver el libro:", e)
+        label.setStyleSheet("QLabel { color : red; }")
+        label.setText("Error al devolver el libro")
         return False
 
 

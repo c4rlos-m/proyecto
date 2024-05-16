@@ -314,6 +314,7 @@ class PaginaReservar(QMainWindow, vReservar):
         self.main_window.show()
 
 
+# PAGINA DEVOLVER LIBROS:
 class PaginaDevolver(QMainWindow, vDevolver):
     def __init__(self, main_window):
         super().__init__()
@@ -346,13 +347,13 @@ class PaginaDevolver(QMainWindow, vDevolver):
     def devolver_libro(self):
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
-        devolver_libro(conn, cursor, self.ui.autorInput.text(), usuario_logeado)
-        if devolver_libro:
-            self.ui.label.setStyleSheet("QLabel { color : green; }")
-            self.ui.label.setText("Libro devuelto")
-        else:
-            self.ui.label.setStyleSheet("QLabel { color : red; }")
-            self.ui.label.setText("Error al devolver el libro")
+        devolver_libro(conn, cursor, self.ui.autorInput.text(), usuario_logeado, self.ui.label)
+        # if devolver_libro:
+        #     self.ui.label.setStyleSheet("QLabel { color : green; }")
+        #     self.ui.label.setText("Libro devuelto")
+        # else:
+        #     self.ui.label.setStyleSheet("QLabel { color : red; }")
+        #     self.ui.label.setText("Error al devolver el libro")
         conn.close()
         self.show_data()
 
