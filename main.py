@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
-from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados, devolver_libro, hacer_admin, listar_usuarios
+from database.database import connect, insert_user, login_user, title_to_id, obtener_info_libro_por_id, libro_disponible, reservar_libro, libros_reservados, devolver_libro, hacer_admin, listar_usuarios, eliminar_usuario
 from plantillas.pantallaPrincipal import Ui_MainWindow as vPrincipal
 from plantillas.menuPrincipal import Ui_MainWindow as vMenuPrincipal
 from plantillas.paginaAdministrador import Ui_MainWindow as vMenuAdmin
@@ -140,6 +140,7 @@ class menuAdmin(QMainWindow, vMenuAdmin):
         self.listar_usuarios()
         self.ui.pushButton.clicked.connect(self.hacer_admin)
         self.ui.logoutButton.clicked.connect(self.logout)
+        self.ui.pushButton_4.clicked.connect(self.eliminar_usuario)
 
     def listar_usuarios(self):
         conn = sqlite3.connect('biblioteca.db')
@@ -162,6 +163,15 @@ class menuAdmin(QMainWindow, vMenuAdmin):
         hacer_admin(conn, cursor, self.ui.lineEdit.text())
         conn.close()
         self.listar_usuarios()
+
+    def eliminar_usuario(self):
+        conn = sqlite3.connect('biblioteca.db')
+        cursor = conn.cursor()
+        eliminar_usuario(conn, cursor, self.ui.lineEdit.text())
+        conn.close()
+        self.listar_usuarios()
+
+
 
         
 

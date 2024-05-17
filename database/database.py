@@ -270,3 +270,14 @@ def listar_usuarios(conn, cursor):
     except sqlite3.Error as e:
         print("Error al obtener la lista de usuarios:", e)
         return []
+    
+
+def eliminar_usuario(conn, cursor, nombre_usuario):
+    try:
+        cursor.execute('DELETE FROM usuarios WHERE nombre = ?', (nombre_usuario,))
+        conn.commit()
+        print(f"Usuario {nombre_usuario} eliminado.")
+        return True
+    except sqlite3.Error as e:
+        print("Error al eliminar el usuario:", e)
+        return False
