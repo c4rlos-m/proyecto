@@ -113,45 +113,37 @@ def insert_user(conn, cursor, nombre, email, password):
         print("Error al registrar usuario: ", e)
 
 def login_user(conn, cursor, nombre, password):
-    try:
-        cursor.execute('''SELECT * FROM usuarios WHERE nombre = ? AND password = ?''', (nombre, password))
-        user = cursor.fetchone()
-        if user:
-            print("Inicio de sesión exitoso")
-            return True
-        else:
-            print("Credenciales incorrectas")
-            return False
-    except sqlite3.Error as e:
-        print("Error al iniciar sesión: ", e)
+    cursor.execute('''SELECT * FROM usuarios WHERE nombre = ? AND password = ?''', (nombre, password))
+    user = cursor.fetchone()
+    if user:
+        print("Inicio de sesión exitoso")
+        return True
+    else:
+        print("Credenciales incorrectas")
         return False
     
+    
 def title_to_id(conn, cursor, title):
-    try:
-        cursor.execute('SELECT id FROM libros WHERE titulo = ?', (title,))
-        result = cursor.fetchone()
-        if result:
-            print(f"El id del libro '{title}' es {result[0]}.")
-            return result[0]
-        else:
-            print(f"No se encontró ningún libro con el título '{title}'.")
-            return None
-    except sqlite3.Error as e:
-        print("Error al obtener el id del libro:", e)
+    cursor.execute('SELECT id FROM libros WHERE titulo = ?', (title,))
+    result = cursor.fetchone()
+    if result:
+        print(f"El id del libro '{title}' es {result[0]}.")
+        return result[0]
+    else:
+        print(f"No se encontró ningún libro con el título '{title}'.")
         return None
+    
 
 def obtener_info_libro_por_id(id_libro):
-    try:
-        conn = sqlite3.connect('biblioteca.db')
-        cursor = conn.cursor()
+    conn = sqlite3.connect('biblioteca.db')
+    cursor = conn.cursor()
 
-        cursor.execute('SELECT * FROM libros WHERE id = ?', (id_libro,))
-        libro = cursor.fetchone()
+    cursor.execute('SELECT * FROM libros WHERE id = ?', (id_libro,))
+    libro = cursor.fetchone()
+    conn.close()
 
-        conn.close()
-
-        if libro:
-            info_libro = {
+    if libro:
+        info_libro = {
                 'id': libro[0],
                 'titulo': libro[1],
                 'autor': libro[2],
@@ -160,39 +152,30 @@ def obtener_info_libro_por_id(id_libro):
                 'disponible': libro[5],
                 'portada': libro[6]
             }
-            return info_libro
-        else:
-            print(f"No se encontró información para el ID {id_libro}.")
-            return None
-    except sqlite3.Error as e:
-        print("Error al obtener la información del libro desde la base de datos:", e)
+        return info_libro
+    else:
+        print(f"No se encontró información para el ID {id_libro}.")
         return None
 
+
 def libro_disponible(conn, cursor, id_libro):
-    try:
-        cursor.execute('SELECT disponible FROM libros WHERE id = ?', (id_libro,))
-        result = cursor.fetchone()
-        if result:
-            return result[0] == 1
-        else:
-            return False
-    except sqlite3.Error as e:
-        print("Error al verificar si el libro está disponible:", e)
-        return False
-    
-def reservar_libro(conn, cursor, id_libro, nombre_usuario):
-    try:
-        cursor.execute('INSERT INTO libros_reservados (id_libro, usuario, fecha_prestamo, devuelto) VALUES (?, ?, DATETIME("now"), 0)', (id_libro, nombre_usuario))
-        cursor.execute('UPDATE libros SET disponible = 0 WHERE id = ?', (id_libro,))
-        conn.commit()
-        print(f"Libro con ID {id_libro} reservado por el usuario {nombre_usuario}.")
-        return True
-    except sqlite3.Error as e:
-        print("Error al reservar el libro:", e)
+    cursor.execute('SELECT disponible FROM libros WHERE id = ?', (id_libro,))
+    result = cursor.fetchone()
+    if result:
+        return result[0] == 1
+    else:
         return False
 
+    
+def reservar_libro(conn, cursor, id_libro, nombre_usuario):
+    cursor.execute('INSERT INTO libros_reservados (id_libro, usuario, fecha_prestamo, devuelto) VALUES (?, ?, DATETIME("now"), 0)', (id_libro, nombre_usuario))
+    cursor.execute('UPDATE libros SET disponible = 0 WHERE id = ?', (id_libro,))
+    conn.commit()
+    print(f"Libro con ID {id_libro} reservado por el usuario {nombre_usuario}.")
+    return True
+
+
 def libros_reservados(conn, cursor, nombre_usuario):
-    try:
         cursor.execute('''SELECT l.titulo, lr.fecha_prestamo 
                           FROM libros_reservados AS lr 
                           INNER JOIN libros AS l ON lr.id_libro = l.id 
@@ -210,13 +193,10 @@ def libros_reservados(conn, cursor, nombre_usuario):
         else:
             print(f"No hay libros reservados por el usuario {nombre_usuario}.")
             return []
-    except sqlite3.Error as e:
-        print("Error al obtener los libros reservados:", e)
-        return []
+
 
 
 def devolver_libro(conn, cursor, titulo_libro, nombre_usuario, label):
-    try:
         # Verificar si el libro está reservado por el usuario
         cursor.execute('SELECT l.id FROM libros AS l INNER JOIN libros_reservados AS lr ON l.id = lr.id_libro WHERE l.titulo = ? AND lr.usuario = ?', (titulo_libro, nombre_usuario))
         id_libro_reservado = cursor.fetchone()
@@ -236,24 +216,16 @@ def devolver_libro(conn, cursor, titulo_libro, nombre_usuario, label):
             label.setStyleSheet("QLabel { color : red; }")
             label.setText(f"No se encontró el libro '{titulo_libro}' reservado.")
             return False
-    except sqlite3.Error as e:
-        print("Error al devolver el libro:", e)
-        label.setStyleSheet("QLabel { color : red; }")
-        label.setText("Error al devolver el libro")
-        return False
+
 
 def hacer_admin(conn, cursor, nombre_usuario):
-    try:
         cursor.execute('UPDATE usuarios SET administrador = 1 WHERE nombre = ?', (nombre_usuario,))
         conn.commit()
         print(f"El usuario {nombre_usuario} ahora es administrador.")
         return True
-    except sqlite3.Error as e:
-        print("Error al hacer administrador al usuario:", e)
-        return False
+
     
 def listar_usuarios(conn, cursor):
-    try:
         cursor.execute('SELECT nombre, email, administrador FROM usuarios')
         usuarios = cursor.fetchall()
         if usuarios:
@@ -267,44 +239,32 @@ def listar_usuarios(conn, cursor):
         else:
             print("No hay usuarios registrados.")
             return []
-    except sqlite3.Error as e:
-        print("Error al obtener la lista de usuarios:", e)
-        return []
+
     
 
 def eliminar_usuario(conn, cursor, nombre_usuario):
-    try:
         cursor.execute('DELETE FROM usuarios WHERE nombre = ?', (nombre_usuario,))
         cursor.execute('DELETE FROM usuarios_bloqueados WHERE nombre = ?', (nombre_usuario,))
         conn.commit()
         print(f"Usuario {nombre_usuario} eliminado.")
         return True
-    except sqlite3.Error as e:
-        print("Error al eliminar el usuario:", e)
-        return False
+
     
 def bloquear_usuario(conn, cursor, nombre_usuario):
-    try:
         cursor.execute('INSERT INTO usuarios_bloqueados (nombre) VALUES (?)', (nombre_usuario,))
         conn.commit()
         print(f"Usuario {nombre_usuario} bloqueado.")
         return True
-    except sqlite3.Error as e:
-        print("Error al bloquear el usuario:", e)
-        return False
+
     
 def desbloquear_usuario(conn, cursor, nombre_usuario):
-    try:
         cursor.execute('DELETE FROM usuarios_bloqueados WHERE nombre = ?', (nombre_usuario,))
         conn.commit()
         print(f"Usuario {nombre_usuario} desbloqueado.")
         return True
-    except sqlite3.Error as e:
-        print("Error al desbloquear el usuario:", e)
-        return False
+
     
 def mostrar_bloqueados(conn, cursor):
-    try:
         # quiero mostrar tambien el email que esta en la tabla de usuarios
         cursor.execute('SELECT u.nombre, u.email FROM usuarios_bloqueados AS ub INNER JOIN usuarios AS u ON ub.nombre = u.nombre')
         bloqueados = cursor.fetchall()
@@ -318,7 +278,5 @@ def mostrar_bloqueados(conn, cursor):
         else:
             print("No hay usuarios bloqueados.")
             return []
-    except sqlite3.Error as e:
-        print("Error al obtener la lista de usuarios bloqueados:", e)
-        return []
+
     

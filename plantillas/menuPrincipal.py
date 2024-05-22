@@ -40,7 +40,6 @@ class Ui_MainWindow(object):
 "    color: white; /* Color de texto */\n"
 "    border-radius: 5px; \n"
 "    padding: 8px 16px; /* Espaciado interno */\n"
-"    text-align: center; /* Alineaci\u00f3n de texto */\n"
 "    text-decoration: none; /* Sin decoraci\u00f3n de texto */\n"
 "    font-size: 16px; /* Tama\u00f1o de fuente */\n"
 "    margin: 4px 2px; /* Margen */\n"

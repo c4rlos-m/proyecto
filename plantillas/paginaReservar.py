@@ -32,7 +32,6 @@ class Ui_MainWindow(object):
 "    border-radius: 5px;\n"
 "    padding: 10px;\n"
 "    font-size: 16px; /* Tama\u00f1o de letra */\n"
-"    text-align: center; /* Texto centrado */\n"
 "}\n"
 "\n"
 "/* Estilos para QPushButton */\n"
@@ -43,7 +42,6 @@ class Ui_MainWindow(object):
 "    border-radius: 5px;\n"
 "    padding: 10px 20px; /* Ajuste del padding */\n"
 "    font-size: 16px; /* Tama\u00f1o de letra */\n"
-"    text-align: center; /* Texto centrado */\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")

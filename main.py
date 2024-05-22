@@ -9,7 +9,9 @@ from plantillas.paginaReservar import Ui_MainWindow as vReservar
 from plantillas.paginaBuscar import Ui_MainWindow as vBuscar
 from plantillas.paginaDevolver import Ui_MainWindow as vDevolver
 from PySide6.QtWidgets import QApplication, QPushButton, QLineEdit, QLabel, QMainWindow, QWidget, QTableWidgetItem, QGraphicsScene, QSizePolicy, QGraphicsPixmapItem, QHeaderView
-from PySide6.QtGui import QPixmap, Qt
+from PySide6.QtGui import QPixmap, Qt, QIcon
+
+
 
 
 class MainWindow(QMainWindow, vPrincipal):
@@ -21,6 +23,9 @@ class MainWindow(QMainWindow, vPrincipal):
         self.ui.loginButtonPage.clicked.connect(self.show_login_page)
         self.ui.loginButton.clicked.connect(self.login)
         self.ui.registerButton.clicked.connect(self.register)
+        self.setWindowTitle("M3 Biblioteca")
+        self.setWindowIcon(QIcon("./src/libros.png"))
+
         connect()
 
 
@@ -31,12 +36,9 @@ class MainWindow(QMainWindow, vPrincipal):
         self.ui.stackedWidget.setCurrentIndex(0)
     
     def user_is_admin(self, conn, cursor, nombre):
-        try:
             cursor.execute('SELECT * FROM usuarios WHERE nombre = ? AND administrador = 1', (nombre,))
             return cursor.fetchone() is not None
-        except sqlite3.Error as e:
-            print("Error al verificar si el usuario es administrador:", e)
-            return False
+
 
     def login(self):
         nombre = self.ui.usernameInputLogin.text()
@@ -111,7 +113,7 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
     def logout(self):
         self.close()
         self.main_window.show()
-
+    
     def pagina_buscar(self):
         self.hide()  # Oculta la ventana actual
         # Crea una instancia de la ventana de búsqueda
