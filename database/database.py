@@ -275,9 +275,50 @@ def listar_usuarios(conn, cursor):
 def eliminar_usuario(conn, cursor, nombre_usuario):
     try:
         cursor.execute('DELETE FROM usuarios WHERE nombre = ?', (nombre_usuario,))
+        cursor.execute('DELETE FROM usuarios_bloqueados WHERE nombre = ?', (nombre_usuario,))
         conn.commit()
         print(f"Usuario {nombre_usuario} eliminado.")
         return True
     except sqlite3.Error as e:
         print("Error al eliminar el usuario:", e)
         return False
+    
+def bloquear_usuario(conn, cursor, nombre_usuario):
+    try:
+        cursor.execute('INSERT INTO usuarios_bloqueados (nombre) VALUES (?)', (nombre_usuario,))
+        conn.commit()
+        print(f"Usuario {nombre_usuario} bloqueado.")
+        return True
+    except sqlite3.Error as e:
+        print("Error al bloquear el usuario:", e)
+        return False
+    
+def desbloquear_usuario(conn, cursor, nombre_usuario):
+    try:
+        cursor.execute('DELETE FROM usuarios_bloqueados WHERE nombre = ?', (nombre_usuario,))
+        conn.commit()
+        print(f"Usuario {nombre_usuario} desbloqueado.")
+        return True
+    except sqlite3.Error as e:
+        print("Error al desbloquear el usuario:", e)
+        return False
+    
+def mostrar_bloqueados(conn, cursor):
+    try:
+        # quiero mostrar tambien el email que esta en la tabla de usuarios
+        cursor.execute('SELECT u.nombre, u.email FROM usuarios_bloqueados AS ub INNER JOIN usuarios AS u ON ub.nombre = u.nombre')
+        bloqueados = cursor.fetchall()
+        if bloqueados:
+            print("Usuarios bloqueados:")
+            for bloqueado in bloqueados:
+                nombre = bloqueado[0]
+                email = bloqueado[1]
+                print(f"Nombre: {nombre}, Email: {email}")
+            return bloqueados
+        else:
+            print("No hay usuarios bloqueados.")
+            return []
+    except sqlite3.Error as e:
+        print("Error al obtener la lista de usuarios bloqueados:", e)
+        return []
+    
