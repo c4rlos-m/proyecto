@@ -39,7 +39,7 @@ QPushButton#ReservarButton {
 QPushButton#buscarButton:hover,
 QPushButton#DevolverButton:hover,
 QPushButton#ReservarButton:hover {
-    background-color: #45a049; /* Cambiar color al pasar el ratón */
+    background-color: #4A58E7; /* Cambiar color al pasar el ratón */
 }
 
 /* Estilos para la tabla */
@@ -68,8 +68,8 @@ QLabel#label_2 {
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>50</y>
+      <x>100</x>
+      <y>70</y>
       <width>341</width>
       <height>21</height>
      </rect>
@@ -88,7 +88,7 @@ QLabel#label_2 {
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>140</y>
+      <y>160</y>
       <width>101</width>
       <height>41</height>
      </rect>
@@ -109,9 +109,9 @@ QLabel#label_2 {
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>250</y>
-      <width>641</width>
-      <height>251</height>
+      <y>290</y>
+      <width>631</width>
+      <height>181</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -124,23 +124,14 @@ QLabel#label_2 {
      <bool>false</bool>
     </property>
     <property name="rowCount">
-     <number>20</number>
+     <number>5</number>
     </property>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>153</number>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>false</bool>
+    </attribute>
     <row/>
     <row/>
     <row/>
@@ -148,7 +139,7 @@ QLabel#label_2 {
     <row/>
     <column>
      <property name="text">
-      <string>id</string>
+      <string>Titulo</string>
      </property>
      <property name="font">
       <font>
@@ -158,7 +149,7 @@ QLabel#label_2 {
     </column>
     <column>
      <property name="text">
-      <string>titulo</string>
+      <string>Autor</string>
      </property>
      <property name="font">
       <font>
@@ -168,7 +159,7 @@ QLabel#label_2 {
     </column>
     <column>
      <property name="text">
-      <string>autor</string>
+      <string>Fecha Publicación</string>
      </property>
      <property name="font">
       <font>
@@ -178,27 +169,7 @@ QLabel#label_2 {
     </column>
     <column>
      <property name="text">
-      <string>Año Publicacion</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>genero</string>
-     </property>
-     <property name="font">
-      <font>
-       <bold>true</bold>
-      </font>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>disponible</string>
+      <string>Genero</string>
      </property>
      <property name="font">
       <font>
@@ -211,7 +182,7 @@ QLabel#label_2 {
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>140</y>
+      <y>160</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -232,7 +203,7 @@ QLabel#label_2 {
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>140</y>
+      <y>160</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -252,10 +223,10 @@ QLabel#label_2 {
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>230</y>
+      <x>330</x>
+      <y>250</y>
       <width>141</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -265,7 +236,7 @@ QLabel#label_2 {
      </font>
     </property>
     <property name="text">
-     <string>Libros disponibles </string>
+     <string>Proximas Entregas</string>
     </property>
    </widget>
    <widget class="QPushButton" name="logoutButton">
@@ -293,6 +264,22 @@ border-radius: 5px
      <string>Logout</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>30</y>
+      <width>251</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:./src/les_salines.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -306,6 +293,8 @@ border-radius: 5px
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../test.qrc"/>
+ </resources>
  <connections/>
 </ui>

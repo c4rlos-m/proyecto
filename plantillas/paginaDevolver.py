@@ -25,6 +25,27 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
+        MainWindow.setStyleSheet(u"/* Estilos para QLineEdit */\n"
+"QLineEdit {\n"
+"    background-color: #273746; /* Fondo azul oscuro */\n"
+"    color: #ECF0F1; /* Texto blanco */\n"
+"    border: 2px solid #3498DB; /* Borde azul */\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px; /* Tama\u00f1o de letra */\n"
+"    text-align: center; /* Texto centrado */\n"
+"}\n"
+"\n"
+"/* Estilos para QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #3498DB; /* Fondo azul */\n"
+"    color: #ECF0F1; /* Texto blanco */\n"
+"    border: 2px solid #3498DB; /* Borde azul */\n"
+"    border-radius: 5px;\n"
+"    padding: 10px 20px; /* Ajuste del padding */\n"
+"    font-size: 16px; /* Tama\u00f1o de letra */\n"
+"    text-align: center; /* Texto centrado */\n"
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.tableWidget = QTableWidget(self.centralwidget)
@@ -58,7 +79,9 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QRect(480, 370, 311, 31))
         font = QFont()
         font.setPointSize(15)
+        font.setBold(True)
         self.label.setFont(font)
+        self.label.setStyleSheet(u"color: #3498DB")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(260, 20, 241, 31))
@@ -80,13 +103,13 @@ class Ui_MainWindow(object):
 "")
         self.autorInput = QLineEdit(self.centralwidget)
         self.autorInput.setObjectName(u"autorInput")
-        self.autorInput.setGeometry(QRect(80, 80, 281, 51))
+        self.autorInput.setGeometry(QRect(80, 110, 281, 51))
         font3 = QFont()
         font3.setBold(True)
         self.autorInput.setFont(font3)
         self.buscarAutor = QPushButton(self.centralwidget)
         self.buscarAutor.setObjectName(u"buscarAutor")
-        self.buscarAutor.setGeometry(QRect(430, 80, 111, 51))
+        self.buscarAutor.setGeometry(QRect(430, 110, 111, 51))
         self.buscarAutor.setFont(font3)
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
@@ -115,7 +138,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Titulo", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Fecha Reserva", None));
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Quieres devolver algun libro?", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Quieres devolver alg\u00fan libro?", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"DEVOLVER UN LIBRO", None))
         self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"Volver", None))
         self.autorInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Buscar por Titulo", None))

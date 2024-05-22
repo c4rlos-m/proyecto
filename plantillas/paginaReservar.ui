@@ -13,6 +13,29 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* Estilos para QLineEdit */
+QLineEdit {
+    background-color: #273746; /* Fondo azul oscuro */
+    color: #ECF0F1; /* Texto blanco */
+    border: 2px solid #3498DB; /* Borde azul */
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px; /* Tamaño de letra */
+    text-align: center; /* Texto centrado */
+}
+
+/* Estilos para QPushButton */
+QPushButton {
+    background-color: #3498DB; /* Fondo azul */
+    color: #ECF0F1; /* Texto blanco */
+    border: 2px solid #3498DB; /* Borde azul */
+    border-radius: 5px;
+    padding: 10px 20px; /* Ajuste del padding */
+    font-size: 16px; /* Tamaño de letra */
+    text-align: center; /* Texto centrado */
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="logoutButton">
     <property name="geometry">
@@ -25,6 +48,7 @@
     </property>
     <property name="font">
      <font>
+      <pointsize>-1</pointsize>
       <bold>true</bold>
       <underline>false</underline>
       <strikeout>false</strikeout>
@@ -44,7 +68,7 @@ border:  none
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>270</y>
+      <y>300</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -69,7 +93,7 @@ border:  none
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>240</y>
+      <y>270</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -110,7 +134,7 @@ border:  none
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>300</y>
+      <y>330</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -139,6 +163,7 @@ border:  none
     </property>
     <property name="font">
      <font>
+      <pointsize>-1</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -157,6 +182,7 @@ border:  none
     </property>
     <property name="font">
      <font>
+      <pointsize>-1</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -168,7 +194,7 @@ border:  none
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>140</y>
+      <y>170</y>
       <width>51</width>
       <height>31</height>
      </rect>
@@ -193,7 +219,7 @@ border:  none
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>210</y>
+      <y>240</y>
       <width>51</width>
       <height>31</height>
      </rect>
@@ -237,7 +263,7 @@ border-radius: 5px;</string>
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>170</y>
+      <y>200</y>
       <width>181</width>
       <height>31</height>
      </rect>
@@ -260,13 +286,14 @@ border-radius: 5px;</string>
      <rect>
       <x>450</x>
       <y>370</y>
-      <width>281</width>
+      <width>301</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>20</pointsize>
+      <pointsize>18</pointsize>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
@@ -281,9 +308,15 @@ border-radius: 5px;</string>
      <rect>
       <x>540</x>
       <y>440</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Reservar</string>

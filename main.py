@@ -96,7 +96,7 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
 
-        query = 'SELECT * FROM libros'
+        query = 'SELECT * FROM proximos_libros'
         cursor.execute(query)
         libros = cursor.fetchall()
 

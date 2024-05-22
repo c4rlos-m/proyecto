@@ -13,6 +13,29 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* Estilos para QLineEdit */
+QLineEdit {
+    background-color: #273746; /* Fondo azul oscuro */
+    color: #ECF0F1; /* Texto blanco */
+    border: 2px solid #3498DB; /* Borde azul */
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px; /* Tamaño de letra */
+    text-align: center; /* Texto centrado */
+}
+
+/* Estilos para QPushButton */
+QPushButton {
+    background-color: #3498DB; /* Fondo azul */
+    color: #ECF0F1; /* Texto blanco */
+    border: 2px solid #3498DB; /* Borde azul */
+    border-radius: 5px;
+    padding: 10px 20px; /* Ajuste del padding */
+    font-size: 16px; /* Tamaño de letra */
+    text-align: center; /* Texto centrado */
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
@@ -91,10 +114,14 @@
     <property name="font">
      <font>
       <pointsize>15</pointsize>
+      <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: #3498DB</string>
+    </property>
     <property name="text">
-     <string>Quieres devolver algun libro?</string>
+     <string>Quieres devolver algún libro?</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -127,6 +154,7 @@
     </property>
     <property name="font">
      <font>
+      <pointsize>-1</pointsize>
       <bold>true</bold>
       <underline>false</underline>
       <strikeout>false</strikeout>
@@ -146,13 +174,14 @@ border:  none
     <property name="geometry">
      <rect>
       <x>80</x>
-      <y>80</y>
+      <y>110</y>
       <width>281</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <pointsize>-1</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -164,13 +193,14 @@ border:  none
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>80</y>
+      <y>110</y>
       <width>111</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <pointsize>-1</pointsize>
       <bold>true</bold>
      </font>
     </property>

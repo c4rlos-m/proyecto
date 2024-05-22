@@ -49,7 +49,7 @@ class Ui_MainWindow(object):
 "QPushButton#buscarButton:hover,\n"
 "QPushButton#DevolverButton:hover,\n"
 "QPushButton#ReservarButton:hover {\n"
-"    background-color: #45a049; /* Cambiar color al pasar el rat\u00f3n */\n"
+"    background-color: #4A58E7; /* Cambiar color al pasar el rat\u00f3n */\n"
 "}\n"
 "\n"
 "/* Estilos para la tabla */\n"
@@ -78,21 +78,21 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(240, 50, 341, 21))
+        self.label.setGeometry(QRect(100, 70, 341, 21))
         font = QFont()
         font.setBold(True)
         self.label.setFont(font)
         self.buscarButton = QPushButton(self.centralwidget)
         self.buscarButton.setObjectName(u"buscarButton")
-        self.buscarButton.setGeometry(QRect(180, 140, 101, 41))
+        self.buscarButton.setGeometry(QRect(180, 160, 101, 41))
         font1 = QFont()
         font1.setBold(True)
         font1.setUnderline(False)
         font1.setStrikeOut(False)
         self.buscarButton.setFont(font1)
         self.tablaLibros = QTableWidget(self.centralwidget)
-        if (self.tablaLibros.columnCount() < 6):
-            self.tablaLibros.setColumnCount(6)
+        if (self.tablaLibros.columnCount() < 4):
+            self.tablaLibros.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
         __qtablewidgetitem.setFont(font);
         self.tablaLibros.setHorizontalHeaderItem(0, __qtablewidgetitem)
@@ -105,30 +105,26 @@ class Ui_MainWindow(object):
         __qtablewidgetitem3 = QTableWidgetItem()
         __qtablewidgetitem3.setFont(font);
         self.tablaLibros.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        __qtablewidgetitem4.setFont(font);
-        self.tablaLibros.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        __qtablewidgetitem5.setFont(font);
-        self.tablaLibros.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        if (self.tablaLibros.rowCount() < 20):
-            self.tablaLibros.setRowCount(20)
+        if (self.tablaLibros.rowCount() < 5):
+            self.tablaLibros.setRowCount(5)
         self.tablaLibros.setObjectName(u"tablaLibros")
-        self.tablaLibros.setGeometry(QRect(80, 250, 641, 251))
+        self.tablaLibros.setGeometry(QRect(80, 290, 631, 181))
         self.tablaLibros.setMinimumSize(QSize(631, 0))
         self.tablaLibros.setSortingEnabled(False)
-        self.tablaLibros.setRowCount(20)
+        self.tablaLibros.setRowCount(5)
+        self.tablaLibros.horizontalHeader().setDefaultSectionSize(153)
+        self.tablaLibros.horizontalHeader().setStretchLastSection(False)
         self.DevolverButton = QPushButton(self.centralwidget)
         self.DevolverButton.setObjectName(u"DevolverButton")
-        self.DevolverButton.setGeometry(QRect(500, 140, 111, 41))
+        self.DevolverButton.setGeometry(QRect(500, 160, 111, 41))
         self.DevolverButton.setFont(font1)
         self.ReservarButton = QPushButton(self.centralwidget)
         self.ReservarButton.setObjectName(u"ReservarButton")
-        self.ReservarButton.setGeometry(QRect(340, 140, 111, 41))
+        self.ReservarButton.setGeometry(QRect(340, 160, 111, 41))
         self.ReservarButton.setFont(font1)
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(320, 230, 141, 16))
+        self.label_2.setGeometry(QRect(330, 250, 141, 21))
         self.label_2.setFont(font)
         self.logoutButton = QPushButton(self.centralwidget)
         self.logoutButton.setObjectName(u"logoutButton")
@@ -137,6 +133,10 @@ class Ui_MainWindow(object):
         self.logoutButton.setStyleSheet(u"background-color: red;\n"
 "border-radius: 5px\n"
 "")
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(510, 30, 251, 91))
+        self.label_3.setStyleSheet(u"image: url(./src/les_salines.png);")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -156,20 +156,17 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Bienvenid@ a la biblioteca de M3", None))
         self.buscarButton.setText(QCoreApplication.translate("MainWindow", u"Buscar", None))
         ___qtablewidgetitem = self.tablaLibros.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"id", None));
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Titulo", None));
         ___qtablewidgetitem1 = self.tablaLibros.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"titulo", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Autor", None));
         ___qtablewidgetitem2 = self.tablaLibros.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"autor", None));
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Fecha Publicaci\u00f3n", None));
         ___qtablewidgetitem3 = self.tablaLibros.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"A\u00f1o Publicacion", None));
-        ___qtablewidgetitem4 = self.tablaLibros.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"genero", None));
-        ___qtablewidgetitem5 = self.tablaLibros.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"disponible", None));
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Genero", None));
         self.DevolverButton.setText(QCoreApplication.translate("MainWindow", u"Devolver", None))
         self.ReservarButton.setText(QCoreApplication.translate("MainWindow", u"Reservar", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Libros disponibles ", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Proximas Entregas", None))
         self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
+        self.label_3.setText("")
     # retranslateUi
 

@@ -65,7 +65,7 @@ QWidget {
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="loginPage">
      <widget class="QLineEdit" name="usernameInputLogin">
@@ -76,6 +76,12 @@ QWidget {
         <width>251</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="placeholderText">
        <string>Username</string>
@@ -89,6 +95,12 @@ QWidget {
         <width>251</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="placeholderText">
        <string>Password</string>
@@ -144,6 +156,7 @@ QWidget {
       <property name="font">
        <font>
         <pointsize>12</pointsize>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -180,6 +193,12 @@ QWidget {
         <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="placeholderText">
        <string>Email</string>
       </property>
@@ -193,6 +212,12 @@ QWidget {
         <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="placeholderText">
        <string>Username</string>
       </property>
@@ -205,6 +230,12 @@ QWidget {
         <width>251</width>
         <height>41</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="placeholderText">
        <string>Password</string>
@@ -233,7 +264,7 @@ QWidget {
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>410</y>
+        <y>420</y>
         <width>161</width>
         <height>21</height>
        </rect>
@@ -241,6 +272,7 @@ QWidget {
       <property name="font">
        <font>
         <pointsize>12</pointsize>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">

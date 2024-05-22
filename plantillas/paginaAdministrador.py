@@ -24,18 +24,58 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
+        MainWindow.setStyleSheet(u"/* Estilos para la etiqueta de bienvenida */\n"
+"QLabel#label {\n"
+"    font-size: 20px; /* Tama\u00f1o de fuente */\n"
+"    color: white; /* Color de texto */\n"
+"}\n"
+"\n"
+"/* Estilos para los botones */\n"
+"QPushButton#pushButton,\n"
+"QPushButton#pushButton_2,\n"
+"QPushButton#pushButton_3,\n"
+"QPushButton#pushButton_4 {\n"
+"    background-color: #3498DB; /* Color de fondo */\n"
+"    color: white; /* Color de texto */\n"
+"    border-radius: 5px; \n"
+"    padding: 8px 16px; /* Espaciado interno */\n"
+"    text-align: center; /* Alineaci\u00f3n de texto */\n"
+"    text-decoration: none; /* Sin decoraci\u00f3n de texto */\n"
+"    font-size: 16px; /* Tama\u00f1o de fuente */\n"
+"    margin: 4px 2px; /* Margen */\n"
+"}\n"
+"\n"
+"QPushButton#pushButton:hover,\n"
+"QPushButton#pushButton_2:hover,\n"
+"QPushButton#pushButton_3:hover,\n"
+"QPushButton#pushButton_4:hover {\n"
+"    background-color: #4A58E7; /* Cambiar color al pasar el rat\u00f3n */\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: #273746; /* Fondo az"
+                        "ul oscuro */\n"
+"    color: #ECF0F1; /* Texto blanco */\n"
+"    border: 2px solid #3498DB; /* Borde azul */\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px; /* Tama\u00f1o de letra */\n"
+"    text-align: center; /* Texto centrado */\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(240, -10, 301, 101))
+        self.label.setGeometry(QRect(310, 0, 301, 101))
         font = QFont()
-        font.setPointSize(20)
         font.setBold(True)
         self.label.setFont(font)
         self.logoutButton = QPushButton(self.centralwidget)
         self.logoutButton.setObjectName(u"logoutButton")
-        self.logoutButton.setGeometry(QRect(640, 20, 121, 41))
+        self.logoutButton.setGeometry(QRect(640, 30, 121, 41))
         font1 = QFont()
         font1.setBold(True)
         font1.setUnderline(False)
@@ -57,7 +97,7 @@ class Ui_MainWindow(object):
         if (self.tableWidget.rowCount() < 10):
             self.tableWidget.setRowCount(10)
         self.tableWidget.setObjectName(u"tableWidget")
-        self.tableWidget.setGeometry(QRect(20, 310, 341, 211))
+        self.tableWidget.setGeometry(QRect(40, 310, 341, 211))
         self.tableWidget.setRowCount(10)
         self.tableWidget.setColumnCount(3)
         self.tableWidget_2 = QTableWidget(self.centralwidget)
@@ -70,32 +110,40 @@ class Ui_MainWindow(object):
         if (self.tableWidget_2.rowCount() < 10):
             self.tableWidget_2.setRowCount(10)
         self.tableWidget_2.setObjectName(u"tableWidget_2")
-        self.tableWidget_2.setGeometry(QRect(510, 310, 241, 211))
+        self.tableWidget_2.setGeometry(QRect(460, 310, 281, 211))
         self.tableWidget_2.setRowCount(10)
+        self.tableWidget_2.horizontalHeader().setDefaultSectionSize(120)
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(180, 280, 61, 16))
+        font2 = QFont()
+        font2.setPointSize(13)
+        font2.setBold(True)
+        self.label_2.setFont(font2)
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(570, 280, 121, 16))
+        self.label_3.setGeometry(QRect(510, 280, 181, 20))
+        self.label_3.setFont(font2)
         self.lineEdit = QLineEdit(self.centralwidget)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setGeometry(QRect(290, 100, 241, 31))
+        self.lineEdit.setGeometry(QRect(270, 103, 311, 41))
+        self.lineEdit.setFont(font)
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(130, 170, 121, 31))
+        self.pushButton.setGeometry(QRect(80, 190, 191, 51))
+        self.pushButton.setFont(font1)
         self.pushButton_2 = QPushButton(self.centralwidget)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(300, 170, 75, 31))
+        self.pushButton_2.setGeometry(QRect(304, 190, 121, 51))
+        self.pushButton_2.setFont(font1)
         self.pushButton_3 = QPushButton(self.centralwidget)
         self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QRect(450, 170, 81, 31))
+        self.pushButton_3.setGeometry(QRect(450, 190, 131, 51))
+        self.pushButton_3.setFont(font1)
         self.pushButton_4 = QPushButton(self.centralwidget)
         self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(590, 170, 75, 31))
-        self.label_4 = QLabel(self.centralwidget)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(380, 230, 49, 16))
+        self.pushButton_4.setGeometry(QRect(604, 190, 111, 51))
+        self.pushButton_4.setFont(font1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -113,7 +161,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Ventana Administrador", None))
-        self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"Ir al Menu Principal", None))
+        self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"Logout", None))
         ___qtablewidgetitem = self.tableWidget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Usuario", None));
         ___qtablewidgetitem1 = self.tableWidget.horizontalHeaderItem(1)
@@ -131,6 +179,5 @@ class Ui_MainWindow(object):
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Bloquear", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Desbloquear", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Eliminar", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
     # retranslateUi
 

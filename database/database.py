@@ -70,7 +70,7 @@ def connect():
                             nombre TEXT PRIMARY KEY
                         )''')
         cursor.execute('''CREATE TABLE IF NOT EXISTS proximos_libros (
-                            titulo TEXT,
+                            titulo TEXT PRIMARY KEY,
                             autor TEXT,
                             fecha_publicacion TEXT,
                             genero TEXT,

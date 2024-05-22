@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(805, 575)
+        MainWindow.resize(829, 632)
         MainWindow.setStyleSheet(u"/* Estilos para QLineEdit */\n"
 "QLineEdit {\n"
 "    background-color: #273746; /* Fondo azul oscuro */\n"
@@ -59,6 +59,8 @@ class Ui_MainWindow(object):
 "\n"
 "/* Alineaci\u00f3n central para todos los widgets */\n"
 "QWidget {\n"
+"    align-items: center;\n"
+"    justify-content: center;\n"
 "    text-align: center;\n"
 "}\n"
 "")
@@ -72,14 +74,16 @@ class Ui_MainWindow(object):
         self.usernameInputLogin = QLineEdit(self.loginPage)
         self.usernameInputLogin.setObjectName(u"usernameInputLogin")
         self.usernameInputLogin.setGeometry(QRect(260, 130, 251, 41))
+        font = QFont()
+        font.setBold(True)
+        self.usernameInputLogin.setFont(font)
         self.passwordInputLogin = QLineEdit(self.loginPage)
         self.passwordInputLogin.setObjectName(u"passwordInputLogin")
         self.passwordInputLogin.setGeometry(QRect(260, 190, 251, 41))
+        self.passwordInputLogin.setFont(font)
         self.loginButton = QPushButton(self.loginPage)
         self.loginButton.setObjectName(u"loginButton")
         self.loginButton.setGeometry(QRect(320, 270, 131, 51))
-        font = QFont()
-        font.setBold(True)
         self.loginButton.setFont(font)
         self.label = QLabel(self.loginPage)
         self.label.setObjectName(u"label")
@@ -93,6 +97,7 @@ class Ui_MainWindow(object):
         self.label_2.setGeometry(QRect(240, 360, 171, 21))
         font2 = QFont()
         font2.setPointSize(12)
+        font2.setBold(True)
         self.label_2.setFont(font2)
         self.registerButtonPage = QPushButton(self.loginPage)
         self.registerButtonPage.setObjectName(u"registerButtonPage")
@@ -104,19 +109,22 @@ class Ui_MainWindow(object):
         self.emailInput = QLineEdit(self.registerPage)
         self.emailInput.setObjectName(u"emailInput")
         self.emailInput.setGeometry(QRect(260, 130, 251, 41))
+        self.emailInput.setFont(font)
         self.usernameInputRegister = QLineEdit(self.registerPage)
         self.usernameInputRegister.setObjectName(u"usernameInputRegister")
         self.usernameInputRegister.setGeometry(QRect(260, 190, 251, 41))
+        self.usernameInputRegister.setFont(font)
         self.passwordInputRegister = QLineEdit(self.registerPage)
         self.passwordInputRegister.setObjectName(u"passwordInputRegister")
         self.passwordInputRegister.setGeometry(QRect(260, 250, 251, 41))
+        self.passwordInputRegister.setFont(font)
         self.registerButton = QPushButton(self.registerPage)
         self.registerButton.setObjectName(u"registerButton")
         self.registerButton.setGeometry(QRect(290, 320, 161, 51))
         self.registerButton.setFont(font)
         self.label_3 = QLabel(self.registerPage)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(250, 410, 161, 21))
+        self.label_3.setGeometry(QRect(250, 420, 161, 21))
         self.label_3.setFont(font2)
         self.loginButtonPage = QPushButton(self.registerPage)
         self.loginButtonPage.setObjectName(u"loginButtonPage")
@@ -130,7 +138,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 805, 33))
+        self.menubar.setGeometry(QRect(0, 0, 829, 33))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")

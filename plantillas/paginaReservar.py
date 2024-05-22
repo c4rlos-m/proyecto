@@ -24,6 +24,27 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
+        MainWindow.setStyleSheet(u"/* Estilos para QLineEdit */\n"
+"QLineEdit {\n"
+"    background-color: #273746; /* Fondo azul oscuro */\n"
+"    color: #ECF0F1; /* Texto blanco */\n"
+"    border: 2px solid #3498DB; /* Borde azul */\n"
+"    border-radius: 5px;\n"
+"    padding: 10px;\n"
+"    font-size: 16px; /* Tama\u00f1o de letra */\n"
+"    text-align: center; /* Texto centrado */\n"
+"}\n"
+"\n"
+"/* Estilos para QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #3498DB; /* Fondo azul */\n"
+"    color: #ECF0F1; /* Texto blanco */\n"
+"    border: 2px solid #3498DB; /* Borde azul */\n"
+"    border-radius: 5px;\n"
+"    padding: 10px 20px; /* Ajuste del padding */\n"
+"    font-size: 16px; /* Tama\u00f1o de letra */\n"
+"    text-align: center; /* Texto centrado */\n"
+"}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.logoutButton = QPushButton(self.centralwidget)
@@ -40,7 +61,7 @@ class Ui_MainWindow(object):
 "")
         self.label_7 = QLabel(self.centralwidget)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(450, 270, 221, 31))
+        self.label_7.setGeometry(QRect(450, 300, 221, 31))
         font1 = QFont()
         font1.setPointSize(12)
         font1.setBold(True)
@@ -49,7 +70,7 @@ class Ui_MainWindow(object):
         self.label_7.setStyleSheet(u"color:#3498DB")
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(450, 240, 181, 31))
+        self.label_3.setGeometry(QRect(450, 270, 181, 31))
         self.label_3.setFont(font1)
         self.label_3.setToolTipDuration(5)
         self.label = QLabel(self.centralwidget)
@@ -61,7 +82,7 @@ class Ui_MainWindow(object):
         self.label.setFont(font2)
         self.label_4 = QLabel(self.centralwidget)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(450, 300, 221, 31))
+        self.label_4.setGeometry(QRect(450, 330, 221, 31))
         self.label_4.setFont(font1)
         self.label_4.setToolTipDuration(5)
         self.autorInput = QLineEdit(self.centralwidget)
@@ -76,13 +97,13 @@ class Ui_MainWindow(object):
         self.buscarAutor.setFont(font3)
         self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(450, 140, 51, 31))
+        self.label_5.setGeometry(QRect(450, 170, 51, 31))
         self.label_5.setFont(font1)
         self.label_5.setToolTipDuration(5)
         self.label_5.setStyleSheet(u"color:#3498DB")
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(450, 210, 51, 31))
+        self.label_6.setGeometry(QRect(450, 240, 51, 31))
         self.label_6.setFont(font1)
         self.label_6.setToolTipDuration(5)
         self.label_6.setStyleSheet(u"color:#3498DB")
@@ -96,19 +117,18 @@ class Ui_MainWindow(object):
 "border-radius: 5px;")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(450, 170, 181, 31))
+        self.label_2.setGeometry(QRect(450, 200, 181, 31))
         self.label_2.setFont(font1)
         self.label_2.setToolTipDuration(5)
         self.label_8 = QLabel(self.centralwidget)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setGeometry(QRect(450, 370, 281, 31))
-        font5 = QFont()
-        font5.setPointSize(20)
-        self.label_8.setFont(font5)
+        self.label_8.setGeometry(QRect(450, 370, 301, 31))
+        self.label_8.setFont(font2)
         self.label_8.setStyleSheet(u"")
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(540, 440, 91, 41))
+        self.pushButton.setGeometry(QRect(540, 440, 111, 41))
+        self.pushButton.setFont(font3)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
