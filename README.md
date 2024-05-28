@@ -1,21 +1,30 @@
-﻿# proyecto
+﻿* Explicación proyecto-m3
 
+Sistema de gestion para un biblioteca.
 
-base de datos:
+5 tablas: Usuarios, Libros, Libros_Reservados, Usuarios_Bloqueados y Proximos_Libros.
 
-tabla: usuarios
-campos: id, nombre, email, password, fecha_registro, administrador
+Pantalla inicial para Logearse o Registrarse
 
-tabla: libros
-campos: id, titulo, autor, fecha_publicacion, genero, disponible
+2 pantallas principales{
+    1. Pantalla de Usuario
+    2. Pantalla de Administrador
+}
 
-tabla: libros_prestados
-campos: id, id_libro, id_usuario, fecha_prestamo, fecha_devolucion, devuelto
+Pantalla de Usuario{
+    1. Buscar Libros
+    2. Reservar Libros
+    3. Ver Libros Reservados
+    4. Ver Proximos Libros
+    5. Cerrar Sesion
+}
 
-tabla: usuarios_bloqueados
-campos: ....
-
-tabla: proximox_libros
-campos: ....
+Pantalla de Administrador{
+    1. Hacer Administrador
+    2. Bloquear Usuario
+    3. Desbloquear Usuario
+    4. Eliminar Usuario
+    5. Cerrar Sesion
+}
 
 
