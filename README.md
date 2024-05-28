@@ -1,6 +1,6 @@
-﻿* Explicación proyecto-m3
+﻿# Explicación proyecto-m3
 
-Sistema de gestion para un biblioteca.
+**Sistema de gestion para un biblioteca.**
 
 5 tablas: Usuarios, Libros, Libros_Reservados, Usuarios_Bloqueados y Proximos_Libros.
 
