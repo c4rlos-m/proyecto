@@ -10,7 +10,7 @@
 El proyecto consiste en un sistema de gestión para una biblioteca, en el cual se pueden realizar las siguientes acciones:
 
 
-**1.** **Logearse o Registrarse:**
+**1.** **Logearse o Registrarse:**\n
     - **Logearse:** El usuario debe ingresar su correo y contraseña para poder acceder al sistema.
     - **Registrarse:** El usuario debe ingresar su nombre, correo y contraseña para poder registrarse en el sistema.
 
@@ -41,4 +41,3 @@ El proyecto consiste en un sistema de gestión para una biblioteca, en el cual s
     - **Github:** Plataforma de desarrollo colaborativo y gestor de repositorios.
     - **Git:** Sistema de control de versiones.
     - **Visual Studio Code:** Editor de código fuente.
-    
