@@ -41,3 +41,6 @@ El proyecto consiste en un sistema de gestión para una biblioteca, en el cual s
     - **Github:** Plataforma de desarrollo colaborativo y gestor de repositorios.  
     - **Git:** Sistema de control de versiones.  
     - **Visual Studio Code:** Editor de código fuente.  
+
+
+> **Nota:** El proyecto se encuentra en la carpeta "Proyecto-M3".
