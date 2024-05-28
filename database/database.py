@@ -113,15 +113,35 @@ def insert_user(conn, cursor, nombre, email, password):
         print("Error al registrar usuario: ", e)
 
 def login_user(conn, cursor, nombre, password):
-    cursor.execute('''SELECT * FROM usuarios WHERE nombre = ? AND password = ?''', (nombre, password))
+    cursor.execute('''
+        SELECT * 
+        FROM usuarios 
+        WHERE nombre = ? AND password = ?
+    ''', (nombre, password))
+    
     user = cursor.fetchone()
+    
     if user:
-        print("Inicio de sesión exitoso")
-        return True
+        nombre = user[0]
+        cursor.execute('''
+            SELECT 1 
+            FROM usuarios_bloqueados 
+            WHERE nombre = ?
+        ''', (nombre,))
+        
+        blocked = cursor.fetchone()
+        
+        if blocked:
+            print("Usuario bloqueado")
+            return False
+        else:
+            print("Inicio de sesión exitoso")
+            return True
     else:
         print("Credenciales incorrectas")
         return False
-    
+
+
     
 def title_to_id(conn, cursor, title):
     cursor.execute('SELECT id FROM libros WHERE titulo = ?', (title,))
