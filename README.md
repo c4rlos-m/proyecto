@@ -2,6 +2,8 @@
 
 **Sistema de gestion para un biblioteca.**  
 
+> **Ejecutar:** Para correr el proyecto, simplemente ejecutar el archivo `main.py`. La base de datos se creara automaticamente.
+
 **Integrantes:**  
 - **Carlos Márquez**  
 - **Juan Carlos Castilla**  
@@ -43,4 +45,3 @@ El proyecto consiste en un sistema de gestión para una biblioteca, en el cual s
     - **Visual Studio Code:** Editor de código fuente.  
 
 
-> **Nota:** El proyecto se encuentra en la carpeta "Proyecto-M3".
