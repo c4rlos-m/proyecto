@@ -28,28 +28,28 @@ class MainWindow(QMainWindow, vPrincipal):
 
         connect()
 
-
+    # Método para mostrar la página de registro
     def show_register_page(self):
         self.ui.stackedWidget.setCurrentIndex(1)
-
+    # Método para mostrar la página de inicio de sesión
     def show_login_page(self):
         self.ui.stackedWidget.setCurrentIndex(0)
-    
+    # Metodo para comprobar si un usuario es administrador
     def user_is_admin(self, conn, cursor, nombre):
             cursor.execute('SELECT * FROM usuarios WHERE nombre = ? AND administrador = 1', (nombre,))
             return cursor.fetchone() is not None
 
-
+    # Método para iniciar sesión
     def login(self):
         nombre = self.ui.usernameInputLogin.text()
         password = self.ui.passwordInputLogin.text()
 
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
-
+        # Llamar a la función login_user en database.py
         if login_user(conn, cursor, nombre, password):
             self.hide()
-            global usuario_logeado 
+            global usuario_logeado # Variable global para almacenar el nombre del usuario logeado para usar despues en la reserva de libros
             usuario_logeado = nombre
             if self.user_is_admin(conn, cursor, nombre):
                 print("El usuario es administrador")
@@ -62,7 +62,7 @@ class MainWindow(QMainWindow, vPrincipal):
         self.ui.usernameInputLogin.clear()
         self.ui.passwordInputLogin.clear()
         conn.close()
-
+    # Método para registrar un usuario
     def register(self):
         nombre = self.ui.usernameInputRegister.text()
         email = self.ui.emailInput.text()
@@ -70,7 +70,7 @@ class MainWindow(QMainWindow, vPrincipal):
 
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
-
+        # Llamar a la función insert_user en database.py para insertar el usuario en la tabla usuarios
         insert_user(conn, cursor, nombre, email, password)
 
         # Limpia los campos de entrada de texto
@@ -88,7 +88,7 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
         self.ui = vMenuPrincipal()
         self.ui.setupUi(self)
         self.main_window = main_window
-        self.show_data()
+        self.show_data()  # Llamar al método show_data para mostrar los libros en la tabla
         self.ui.logoutButton.clicked.connect(self.logout)
         self.ui.buscarButton.clicked.connect(self.pagina_buscar)
         self.ui.ReservarButton.clicked.connect(self.pagina_reservar) 
@@ -109,23 +109,23 @@ class menuPrincipal(QMainWindow, vMenuPrincipal):
             for column_number, data in enumerate(row_data):
                 item = QTableWidgetItem(str(data))
                 self.ui.tablaLibros.setItem(row_number, column_number, item)
-
+    # Metodo para hacer logout
     def logout(self):
         self.close()
         self.main_window.show()
-    
+    # Metodo para mostrar la pagina de busqueda, solo oculta la ventana actual y muestra la de busqueda
     def pagina_buscar(self):
         self.hide()  # Oculta la ventana actual
         # Crea una instancia de la ventana de búsqueda
         self.pagina_buscar_window = PaginaBuscar(self)  # Cambio de nombre de la variable
         # Muestra la ventana de búsqueda
         self.pagina_buscar_window.show()
-
+    # Metodo para mostrar la pagina de reservar, solo oculta la ventana actual y muestra la de reservar
     def pagina_reservar(self):
         self.hide()
         self.pagina_reservar_window = PaginaReservar(self)
         self.pagina_reservar_window.show()
-
+    # Metodo para mostrar la pagina de devolver, solo oculta la ventana actual y muestra la de devolver
     def pagina_devolver(self):
         self.hide()
         self.pagina_devolver_window = PaginaDevolver(self)
@@ -147,6 +147,7 @@ class menuAdmin(QMainWindow, vMenuAdmin):
         self.ui.pushButton_2.clicked.connect(self.bloquear_usuario)
         self.ui.pushButton_3.clicked.connect(self.desbloquear_usuario)
 
+    # Metodo para listar los usuarios en la tabla 
     def listar_usuarios(self):
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
@@ -161,7 +162,7 @@ class menuAdmin(QMainWindow, vMenuAdmin):
         # Establecer el ancho de la primera columna más grande
         header = self.ui.tableWidget.horizontalHeader()
         header.setSectionResizeMode(0, QHeaderView.Stretch)
-
+    
     def hacer_admin(self):
         conn = sqlite3.connect('biblioteca.db')
         cursor = conn.cursor()
@@ -207,12 +208,6 @@ class menuAdmin(QMainWindow, vMenuAdmin):
         desbloquear_usuario(conn, cursor, self.ui.lineEdit.text())
         conn.close()
         self.mostrar_bloqueados()
-
-
-
-
-
-        
 
     def logout(self):
         self.close()
